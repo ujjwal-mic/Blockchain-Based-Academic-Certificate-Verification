@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Certificate Verification</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Certificate Verification</h1>
+    <p>Simulated blockchain using SHA-256 hashing and a local ledger</p>
+  </header>
+
+  <!-- Tab buttons -->
+  <nav>
+    <button class="tab active" data-target="admin">Admin Dashboard</button>
+    <button class="tab" data-target="verify">Verification Portal</button>
+  </nav>
+
+  <main>
+    <!-- ============ ADMIN DASHBOARD ============ -->
+    <section id="admin" class="panel active">
+      <h2>Issue a New Certificate</h2>
+      <form id="issue-form">
+        <label>Student Name
+          <input name="studentName" required placeholder="e.g. Ujjwal Singh" />
+        </label>
+        <label>Student ID
+          <input name="studentId" required placeholder="e.g. A12345" />
+        </label>
+        <label>Course
+          <input name="course" required placeholder="e.g. BTech Computer Science" />
+        </label>
+        <label>Issue Date
+          <input name="issueDate" type="date" required />
+        </label>
+        <button type="submit">Generate Hash &amp; Store in Ledger</button>
+      </form>
+      <div id="issue-result" class="result hidden"></div>
+
+      <h3>Ledger (all issued certificates)</h3>
+      <div class="row">
+        <button id="refresh-ledger" class="secondary">Refresh</button>
+        <button id="check-chain" class="secondary">Check Ledger Integrity</button>
+        <span id="chain-status"></span>
+      </div>
+      <div class="table-wrap">
+        <table id="ledger-table">
+          <thead><tr><th>#</th><th>Student</th><th>ID</th><th>Course</th><th>Date</th><th>Hash</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============ VERIFICATION PORTAL ============ -->
+    <section id="verify" class="panel">
+      <h2>Verify a Certificate</h2>
+
+      <div class="mode-switch">
+        <label><input type="radio" name="mode" value="hash" checked /> Student ID + Hash</label>
+        <label><input type="radio" name="mode" value="details" /> Full certificate details</label>
+      </div>
+
+      <form id="verify-form">
+        <label>Student ID
+          <input name="studentId" required placeholder="e.g. A12345" />
+        </label>
+
+        <div id="hash-fields">
+          <label>Certificate Hash
+            <input name="hash" placeholder="64-character hash" />
+          </label>
+        </div>
+
+        <div id="details-fields" class="hidden">
+          <label>Student Name <input name="studentName" /></label>
+          <label>Course <input name="course" /></label>
+          <label>Issue Date <input name="issueDate" type="date" /></label>
+        </div>
+
+        <button type="submit">Verify</button>
+      </form>
+      <div id="verify-result" class="result hidden"></div>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+  <script src="verify.js"></script>
+  <script>
+    // ---- Tab switching (kept here because it is tiny) ----
+    document.querySelectorAll('.tab').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab, .panel').forEach((el) => el.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.target).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

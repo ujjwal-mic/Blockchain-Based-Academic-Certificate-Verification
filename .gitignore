@@ -1,0 +1,19 @@
+# Installed packages (recreated by `npm install`)
+node_modules/
+
+# Test data (recreated automatically when the server starts)
+ledger.json
+ledger.json.tmp
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment files
+.env
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

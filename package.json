@@ -1,0 +1,16 @@
+{
+  "name": "cert-verify",
+  "version": "1.0.0",
+  "description": "Blockchain-Based Academic Certificate Verification Without Smart Contracts (simulated ledger using SHA-256 + JSON file)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "express": "^4.19.2"
+  },
+  "license": "MIT"
+}
